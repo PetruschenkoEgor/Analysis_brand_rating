@@ -30,5 +30,5 @@ def main():
         print(tabulate(csv_data.rows, headers="keys", tablefmt="grid"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -26,11 +26,7 @@ class TestAverageRatingCommand:
 
     def test_get_rating_brand_collection(self, command_with_data):
         """Тест корректного сбора рейтингов по брендам."""
-        expected_brands = {
-            "apple": [4.9, 4.7],
-            "samsung": [4.8, 4.2],
-            "xiaomi": [4.6]
-        }
+        expected_brands = {"apple": [4.9, 4.7], "samsung": [4.8, 4.2], "xiaomi": [4.6]}
         assert command_with_data.brands == expected_brands
 
     def test_execute_sorting(self, command_with_data):
@@ -56,7 +52,7 @@ class TestAverageRatingCommand:
         """Тест с данными без поля brand."""
         data = [
             {"name": "iphone 15 pro", "rating": 4.9},
-            {"name": "galaxy s23 ultra", "brand": "samsung", "rating": 4.8}
+            {"name": "galaxy s23 ultra", "brand": "samsung", "rating": 4.8},
         ]
         command = AverageRatingCommand()
         command.get_rating(data)
@@ -68,10 +64,7 @@ class TestAverageRatingCommand:
 
     def test_missing_rating_field(self):
         """Тест с данными без поля rating."""
-        data = [
-            {"brand": "apple", "rating": 4.5},
-            {"brand": "samsung"}
-        ]
+        data = [{"brand": "apple", "rating": 4.5}, {"brand": "samsung"}]
         command = AverageRatingCommand()
         command.get_rating(data)
         result = command.execute()

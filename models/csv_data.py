@@ -1,5 +1,5 @@
 import csv
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 
 class CSVData:
@@ -41,6 +41,6 @@ class CSVData:
                 if isinstance(value, str):
                     if value.isdigit():
                         row[key] = int(value)
-                    elif value.replace(".", "", 1).isdigit() and value.count('.') == 1:  # Проверяем на float
+                    elif value.replace(".", "", 1).isdigit() and value.count(".") == 1:  # Проверяем на float
                         row[key] = float(value)
         return rows

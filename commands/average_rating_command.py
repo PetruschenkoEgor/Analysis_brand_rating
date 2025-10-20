@@ -1,16 +1,21 @@
-from typing import Any, List, Dict
+from typing import Any, Dict, List
+
 from numpy import mean
+
 from commands.base_command import BaseCommand
 
 
 class AverageRatingCommand(BaseCommand):
-    """Команда для формирования отчета. Отчёт включает в себя список брендов и средний рейтинг бренда, бренды сортируются по рейтингу."""
+    """
+    Команда для формирования отчета. Отчёт включает в себя список брендов и средний рейтинг бренда,
+    бренды сортируются по рейтингу.
+    """
 
     def __init__(self):
         self.brands = {}
         self.report = []
 
-    def get_rating(self, data:  List[Dict[str, Any]]) -> None:
+    def get_rating(self, data: List[Dict[str, Any]]) -> None:
         """Получаем все рейтинги по брендам."""
         for row in data:
             try:
@@ -38,5 +43,5 @@ class AverageRatingCommand(BaseCommand):
             except Exception as e:
                 print(f"Ошибка: {e}")
                 continue
-        self.report.sort(key=lambda x: x['rating'], reverse=True)
+        self.report.sort(key=lambda x: x["rating"], reverse=True)
         return self.report

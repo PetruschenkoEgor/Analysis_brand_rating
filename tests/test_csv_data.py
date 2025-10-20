@@ -1,6 +1,8 @@
-import pytest
-import tempfile
 import os
+import tempfile
+
+import pytest
+
 from models.csv_data import CSVData
 
 
@@ -10,7 +12,7 @@ class TestCSVData:
     def test_load_from_file(self):
         """Тест загрузки данных из CSV файла."""
         # Создаем временный CSV файл
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False, encoding='utf-8') as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False, encoding="utf-8") as f:
             f.write("name,brand,price,rating\niphone 15 pro,apple,999,4.9\ngalaxy s23 ultra,samsung,1199,4.8\n")
             temp_path = f.name
 
@@ -28,15 +30,15 @@ class TestCSVData:
 
     def test_load_from_file_numeric_conversion(self):
         """Тест конвертации чисел."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False, encoding='utf-8') as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False, encoding="utf-8") as f:
             f.write("price,rating\n100,4.5\n200,4.8\n")
             temp_path = f.name
 
         try:
             csv_data = CSVData.load_from_file(temp_path)
 
-            assert isinstance(csv_data.rows[0]['price'], int)
-            assert isinstance(csv_data.rows[0]['rating'], float)
+            assert isinstance(csv_data.rows[0]["price"], int)
+            assert isinstance(csv_data.rows[0]["rating"], float)
 
         finally:
             os.unlink(temp_path)
@@ -46,14 +48,16 @@ class TestCSVData:
         files = []
         try:
             # Первый файл
-            with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False, encoding='utf-8') as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False, encoding="utf-8") as f:
                 f.write("name,brand,price,rating\niphone 15 pro,apple,999,4.9\ngalaxy s23 ultra,samsung,1199,4.8\n")
                 files.append(f.name)
 
             # Второй файл
-            with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False, encoding='utf-8') as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False, encoding="utf-8") as f:
                 f.write(
-                    "name,brand,price,rating\nredmi note 12,xiaomi,199,4.6\niphone 14,apple,799,4.7\ngalaxy a54,samsung,349,4.2\n")
+                    "name,brand,price,rating\nredmi note 12,xiaomi,199,4.6\n"
+                    "iphone 14,apple,799,4.7\ngalaxy a54,samsung,349,4.2\n"
+                )
                 files.append(f.name)
 
             # Загружаем файлы
