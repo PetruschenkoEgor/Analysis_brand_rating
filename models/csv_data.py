@@ -30,7 +30,7 @@ class CSVData:
             for file in list_file:
                 file_csv_data = CSVData.load_from_file(file.strip())
                 result.extend(file_csv_data.rows)
-            return CSVData(result)
+        return CSVData(result)
 
     @staticmethod
     def _convert_numeric_values(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
